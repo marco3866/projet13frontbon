@@ -5,7 +5,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT = 'LOGOUT';
 
-export const login = (email, password) => async (dispatch) => {
+export const login = ({ email, password }) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   try {
     const response = await axios.post('http://localhost:3001/api/v1/user/login', { email, password });

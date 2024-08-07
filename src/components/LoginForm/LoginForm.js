@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    dispatch(login(email, password));
+    dispatch(login({ email, password }));
   };
 
   return (
