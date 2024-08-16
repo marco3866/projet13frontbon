@@ -1,18 +1,20 @@
 // src/pages/UserPage/UserPage.js
-
 import React from 'react';
+import { useSelector } from 'react-redux'; // Importer useSelector pour récupérer les données de l'utilisateur
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Account from '../../components/Account/Account';
 import './UserPage.css';
 
 const UserPage = () => {
+  const { user } = useSelector((state) => state.auth); // Récupérer les informations de l'utilisateur depuis Redux
+
   return (
     <>
       <Header />
       <main className="main bg-dark">
         <div className="header">
-          <h1>Welcome back<br />Tony Jarvis!</h1>
+          <h1>Welcome back<br />{user ? `${user.firstName} ${user.lastName}` : 'User'}!</h1>
           <button className="edit-button">Edit Name</button>
         </div>
         <section className="account">

@@ -1,19 +1,26 @@
 // src/components/LoginForm/LoginForm.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../../actions/authActions';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../actions/authActions';
 import './LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { loading, error, token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { loading, error, token, user } = useSelector((state) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
     dispatch(login({ email, password }));
   };
+
+  useEffect(() => {
+    if (token && user) {
+      navigate('/user'); // Redirige vers la page utilisateur
+    }
+  }, [token, user, navigate]);
 
   return (
     <>
@@ -36,7 +43,6 @@ const LoginForm = () => {
           {loading ? 'Loading...' : 'Sign In'}
         </button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        {token && <button onClick={() => dispatch(logout())}>Logout</button>}
       </form>
     </>
   );
