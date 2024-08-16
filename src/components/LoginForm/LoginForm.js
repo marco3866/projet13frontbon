@@ -1,4 +1,3 @@
-// src/components/LoginForm/LoginForm.js
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +17,8 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (token && user) {
-      navigate('/user'); // Redirige vers la page utilisateur
+      console.log("User Token:", token); // Log du token
+      navigate('/user');
     }
   }, [token, user, navigate]);
 
@@ -26,20 +26,26 @@ const LoginForm = () => {
     <>
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
         <div className="input-wrapper">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
-        <button className="sign-in-button" onClick={handleLogin} disabled={loading}>
+        <button type="submit" className="sign-in-button" disabled={loading}>
           {loading ? 'Loading...' : 'Sign In'}
         </button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
