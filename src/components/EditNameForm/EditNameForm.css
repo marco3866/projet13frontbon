@@ -1,0 +1,31 @@
+.edit-name-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.edit-name-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.edit-name-form button {
+  background-color: #00bc77;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.edit-name-form button:hover {
+  background-color: #00965e;
+}
+
+.edit-name-form button:last-child {
+  background-color: #ccc;
+  color: #333;
+}
+
+.edit-name-form button:last-child:hover {
+  background-color: #aaa;
+}
